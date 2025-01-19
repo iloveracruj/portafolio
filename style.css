@@ -1,0 +1,106 @@
+/* Estilos generales para PC (por defecto) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    background-color: #000; /* Fondo para mejor visualización */
+}
+
+.content_flex {
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.logo {
+    padding-top: 15vh;
+    max-width: 200px;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.title h1, p {
+    text-align: center;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.buttons_click {
+    padding: 60px 120px;
+    margin-left: 10%;
+    background-color: #fe276079;
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+}
+
+.buttons {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttons button {
+    background-color: transparent;
+    border: 2px solid white;
+    height: 30px;
+    color: white;
+}
+
+/* Media query para tablet y móvil */
+@media (max-width: 768px) {
+    .content_flex {
+        flex-direction: column; /* Apila el contenido verticalmente */
+        align-items: center; /* Centra horizontalmente */
+        justify-content: center; /* Centra verticalmente */
+        padding-top: 0; /* Elimina el padding superior */
+        height: 100%; /* Ocupa toda la altura */
+    }
+
+    .logo {
+        padding-top: 0; /* Sin separación adicional */
+        max-width: 150px; /* Logo más pequeño */
+    }
+
+    .buttons_click {
+        margin: 30px 0; /* Espacio arriba y abajo */
+        width: 90%; /* Ajusta el ancho al 90% */
+        padding: 10px 30px; /* Reduce el padding */
+        text-align: center; /* Alinea el texto al centro */
+    }
+
+    .buttons {
+        padding-top: 15px; /* Menor espacio superior */
+        align-items: center; /* Centra los botones horizontalmente */
+    }
+
+    .buttons button {
+        height: 40px; /* Tamaño más grande para botones táctiles */
+        font-size: 14px; /* Ajusta el tamaño del texto */
+        width: 100%; /* Botones ocupan todo el ancho disponible */
+    }
+}
+
+/* Media query específica para móviles pequeños */
+@media (max-width: 480px) {
+    .logo {
+        max-width: 120px; /* Logo más pequeño */
+    }
+
+    .buttons_click {
+        width: 90%; /* Ocupa todo el ancho disponible */
+        padding: 15px; /* Reduce el padding */
+    }
+
+    .buttons button {
+        height: 35px; /* Botones más pequeños */
+        font-size: 12px; /* Texto más pequeño */
+    }
+}

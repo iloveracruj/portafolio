@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>iloveracruj</title>
+</head>
+<body>
+    <div class="container" style="background: url(https://iloveracruj.github.io/portafolio/assets/font.jpg
+); background-size: cover; background-position: center center;">
+  <div class="content_flex">
+    <div class="logo">
+        <img src="https://iloveracruj.github.io/portafolio/assets/logo.png
+        " alt="">
+    </div>
+    <div class="buttons_click">
+        <div class="title">
+            <h1>iloveracruj</h1>
+            <p>siguenos</p>
+        </div>
+        <div class="buttons">
+            <button onclick="window.location.href='https://www.tiktok.com/@iloveracruj?is_from_webapp=1&sender_device=pc'">tiktok</button>
+            <button onclick="window.location.href='https://youtube.com/@iloveracruj?si=qEkt2OLgdCtTA4bq'">youtube</button>
+            <button onclick="window.location.href='https://www.instagram.com/iloveracruj_oficial?igsh=MTRwbHAzY29rYW83dA=='">instagram</button>
+            <button onclick="window.location.href='https://www.facebook.com/share/15nJrgYkp3/'">facebook</button>
+            <button onclick="window.location.href='https://pin.it/7J6hkXEAu'">pinterest</button>
+        </div>
+    </div>
+  </div>
+    </div>
+</body>
+<script>
+    const container = document.querySelector('.container');
+const buttonsClick = document.querySelector('.buttons_click');
+
+const backgrounds = [
+    'https://iloveracruj.github.io/portafolio/assets/veracruz.jpeg',
+    'https://iloveracruj.github.io/portafolio/assets/acuarium.jpg',
+    'https://iloveracruj.github.io/portafolio/assets/ulua.jpg',
+];
+let index = 0;
+
+// Configura la transición suave
+container.style.transition = 'background-image 1s ease-in-out';
+buttonsClick.style.transition = 'background-color 1s ease-in-out';
+
+// Función para obtener el color predominante de una imagen
+function getDominantColor(imageUrl, callback) {
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; // Permite cargar imágenes de dominios externos
+    img.src = imageUrl;
+
+    img.onload = function () {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        const color = { r: 0, g: 0, b: 0, count: 0 };
+
+        for (let i = 0; i < imageData.length; i += 4) {
+            color.r += imageData[i];
+            color.g += imageData[i + 1];
+            color.b += imageData[i + 2];
+            color.count++;
+        }
+
+        // Promedio de los valores RGB
+        color.r = Math.floor(color.r / color.count);
+        color.g = Math.floor(color.g / color.count);
+        color.b = Math.floor(color.b / color.count);
+
+        // Callback con el color resultante
+        callback(`rgba(${color.r}, ${color.g}, ${color.b}, 0.3)`);
+    };
+}
+
+// Cambia el fondo y analiza la imagen
+function changeBackground() {
+    const imageUrl = backgrounds[index];
+    container.style.backgroundImage = `url("${imageUrl}")`;
+
+    getDominantColor(imageUrl, (dominantColor) => {
+        buttonsClick.style.backgroundColor = dominantColor;
+    });
+
+    index = (index + 1) % backgrounds.length; // Reinicia el índice al llegar al final
+}
+
+setInterval(changeBackground, 4000); // Cambia el fondo cada 5 segundos
+
+
+</script>
+</html>
